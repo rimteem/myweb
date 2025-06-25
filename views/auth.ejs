@@ -1,0 +1,87 @@
+<%- include('partials/header') %>
+
+<div class="auth-page-container">
+    <div class="auth-left-pane">
+        <div class="brand-logo">
+          <img src="/images/logo-main-whitebg.png" alt="RimToken Platform Logo" />
+        </div>
+        <h1><%= __('homeWelcomeMessage') %></h1>
+        <p><%= __('homeWelcomeSubMessage') %></p>
+    </div>
+
+    <div class="auth-right-pane">
+        <div class="form-header">
+            <div class="icon-logo">
+                <img src="/images/logo-icon-darkbg.png" alt="RimToken Icon" />
+            </div>
+            <p class="site-name">RimToken</p>
+
+            <% if (activeForm === 'register') { %>
+                <h2 class="form-title"><%= __('authPageTitleRegister') %></h2>
+                <p class="form-subtitle"><%= __('authPageSubtitleRegister') %></p>
+            <% } else { %>
+                <h2 class="form-title"><%= __('authPageTitleLogin') %></h2>
+                <p class="form-subtitle"><%= __('authPageSubtitleLogin') %></p>
+            <% } %>
+        </div>
+
+        <div class="form-tabs">
+            <button id="loginTabBtn" class="<%= activeForm === 'login' ? 'active' : '' %>" data-form="login">
+                <%= __('login') %>
+            </button>
+            <button id="registerTabBtn" class="<%= activeForm === 'register' ? 'active' : '' %>" data-form="register">
+                <%= __('register') %>
+            </button>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="registerForm" class="auth-form <%= activeForm === 'register' ? '' : 'hidden-form' %>" method="POST" action="/register">
+            <h3 class="form-section-title"><%= __('personalInformation') %></h3>
+            <div class="name-fields-group">
+                <div class="form-group">
+                    <label for="firstName" class="english-label"><%= __('firstNameLabel') %></label>
+                    <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName"><%= __('lastNameLabel') %></label>
+                    <input type="text" id="lastName" name="lastName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="regUsername"><%= __('usernameLabel') %></label>
+                <input type="text" id="regUsername" name="username" />
+            </div>
+            <div class="form-group">
+                <label for="regEmail"><%= __('emailLabel') %></label>
+                <input type="email" id="regEmail" name="email" required />
+            </div>
+            <div class="form-group">
+                <label for="regPassword"><%= __('passwordLabel') %></label>
+                <input type="password" id="regPassword" name="password" required />
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword"><%= __('confirmPasswordLabel') %></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required />
+            </div>
+            <div class="trading-options-section">
+                <h4><%= __('tradingOptionsLabel') %></h4>
+                <p>خيارات التداول ستضاف هنا</p>
+            </div>
+            <button type="submit" class="submit-btn"><%= __('createAccountButton') %></button>
+        </form>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form <%= activeForm === 'login' ? '' : 'hidden-form' %>" method="POST" action="/login">
+             <div class="form-group">
+                <label for="loginEmail"><%= __('loginEmailOrUsernameLabel') %></label>
+                <input type="text" id="loginEmail" name="loginEmail" required />
+            </div>
+            <div class="form-group">
+                <label for="loginPassword"><%= __('passwordLabel') %></label>
+                <input type="password" id="loginPassword" name="loginPassword" required />
+            </div>
+            <button type="submit" class="submit-btn"><%= __('loginButton') %></button>
+        </form>
+    </div>
+</div>
+<%- include('partials/footer') %>

@@ -1,0 +1,97 @@
+<%- include('partials/header') %>
+
+<section class="hero" id="home">
+    <div class="container">
+        <h1><%- __('welcomeToRimtoken') %></h1>
+        <p><%- __('welcomeSubtitle') %></p>
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary"><%- __('getStarted') %></a>
+            <a href="#" class="btn btn-secondary"><%- __('learnMore') %></a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <div class="container">
+        <h2 class="section-title"><%- __('aboutTitle') %></h2>
+        <div class="card">
+            <p><%- __('aboutIntro') %></p>
+            <h4><%- __('aboutVisionTitle') %></h4>
+            <p><%- __('aboutVision') %></p>
+            <h4><%- __('aboutPurposeTitle') %></h4>
+            <ul>
+                <% __('aboutPurposeList').forEach(function(item) { %>
+                    <li><%- item %></li>
+                <% }) %>
+            </ul>
+            <h4><%- __('aboutPrinciplesTitle') %></h4>
+            <ul>
+                <% __('aboutPrinciplesList').forEach(function(item) { %>
+                    <li><%- item %></li>
+                <% }) %>
+            </ul>
+            <h4><%- __('aboutJoinTitle') %></h4>
+            <p><%- __('aboutJoin') %></p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="features" style="background-color: var(--surface-color);">
+    <div class="container">
+        <h2 class="section-title"><%- __('navFeatures') %></h2>
+        <!-- ... your features cards content ... -->
+    </div>
+</section>
+
+<section class="section" id="team">
+    <div class="container">
+        <h2 class="section-title"><%- __('navTeam') %></h2>
+        <div class="grid grid-4-cols">
+            <div class="card team-card">
+                <img src="/images/team-members/anbarzan.jpg" alt="Anbarzan" />
+                <h4>Anbarzan</h4>
+                <span class="title"><%- __('teamRoleFounder') %></span>
+                <p><%- __('teamBioAnbarzan') %></p>
+            </div>
+            <div class="card team-card">
+                <img src="/images/team-members/hamido.jpg" alt="Hamido" />
+                <h4>Hamido</h4>
+                <span class="title"><%- __('teamRoleCOO') %></span>
+                <p><%- __('teamBioHamido') %></p>
+            </div>
+            <div class="card team-card">
+                <img src="/images/team-members/hatan.jpg" alt="Hatan" />
+                <h4>Hatan</h4>
+                <span class="title"><%- __('teamRoleLeadDev') %></span>
+                <p><%- __('teamBioHatan') %></p>
+            </div>
+            <div class="card team-card">
+                <img src="/images/team-members/joen.jpg" alt="Joen" />
+                <h4>Joen</h4>
+                <span class="title"><%- __('teamRoleCyber') %></span>
+                <p><%- __('teamBioJoen') %></p>
+            </div>
+            <div class="card team-card">
+                <img src="/images/team-members/mazin.jpg" alt="Mazin" />
+                <h4>Mazin</h4>
+                <span class="title"><%- __('teamRoleMarketing') %></span>
+                <p><%- __('teamBioMazin') %></p>
+            </div>
+            <div class="card team-card">
+                <img src="/images/team-members/othmankamra.jpg" alt="Othman Kamra" />
+                <h4>Othman Kamra</h4>
+                <span class="title"><%- __('teamRoleData') %></span>
+                <p><%- __('teamBioOthman') %></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="market" style="background-color: var(--surface-color);">
+    <div class="container">
+        <h2 class="section-title"><%- __('navMarket') %></h2>
+        <!-- ... your market table content ... -->
+    </div>
+</section>
+
+<%- include('partials/footer') %>

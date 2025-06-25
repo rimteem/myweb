@@ -1,0 +1,521 @@
+/* style.css */
+
+/* CSS Custom Properties (Variables) for easy theming */
+:root {
+    --primary-color: #007bff; /* A vibrant blue, common in tech */
+    --primary-hover-color: #0056b3;
+    --secondary-color: #6c757d;
+    --background-color: #1a1c23; /* Dark background */
+    --surface-color: #242731;   /* Slightly lighter for cards/elements */
+    --text-color: #e4e6eb;
+    --text-muted-color: #adb5bd;
+    --border-color: #333947;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --transition-speed: 0.3s;
+}
+
+/* Basic Reset & Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-family-sans-serif);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 16px;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; /* Add some horizontal padding to the container */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--primary-hover-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below images */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* Header & Navigation */
+.site-header {
+    background-color: var(--surface-color);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+.logo span {
+    color: var(--text-color);
+}
+
+.header-right-content {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav ul li {
+    margin-left: 25px;
+}
+
+.main-nav ul li a {
+    color: var(--text-muted-color);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color var(--transition-speed) ease;
+}
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--text-color);
+}
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Slight offset for visual appeal */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease;
+}
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+/* Language Selector */
+.language-selector {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+.language-selector .lang-icon {
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+    margin-left: 10px;
+    padding: 5px 8px;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+.language-selector .lang-icon:hover,
+.language-selector .lang-icon.active-lang {
+    color: var(--text-color);
+    border-color: var(--primary-color);
+    background-color: rgba(0, 123, 255, 0.1);
+}
+.language-selector .lang-icon:first-child {
+    margin-left: 0;
+}
+
+/* Hero Section */
+.hero {
+    /* Replace 'https://via.placeholder.com/...' with a real, high-quality background image */
+    background: linear-gradient(rgba(26, 28, 35, 0.85), rgba(26, 28, 35, 0.98)), url('https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80') no-repeat center center/cover;
+    padding: 100px 0; /* Increased padding */
+    text-align: center;
+    color: #fff; /* Ensure text is white for hero */
+}
+
+.hero h1 {
+    font-size: 3.2rem; /* Slightly larger */
+    margin-bottom: 25px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+.hero h1 .highlight {
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 1.25rem; /* Slightly larger */
+    margin-bottom: 35px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-muted-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 32px; /* Larger padding */
+    font-size: 1.05rem; /* Slightly larger font */
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    border: none;
+    line-height: 1; /* For consistent height */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+    color: #fff;
+    transform: translateY(-3px); /* More pronounced hover effect */
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.35);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+.btn-group .btn {
+    margin: 0 10px;
+}
+
+/* Sections & Cards */
+.section {
+    padding: 80px 0; /* Increased section padding */
+}
+.section-title {
+    text-align: center;
+    font-size: 2.5rem; /* Larger section titles */
+    margin-bottom: 50px; /* More space below title */
+    position: relative;
+    padding-bottom: 20px; /* More space for underline */
+    font-weight: 700;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Wider underline */
+    height: 4px;  /* Thicker underline */
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.grid {
+    display: grid;
+    gap: 30px;
+}
+
+.grid-3-cols {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly larger minmax */
+}
+.grid-4-cols {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adjusted for 4 columns */
+}
+
+.card {
+    background-color: var(--surface-color);
+    padding: 35px; /* Increased padding */
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make cards in a row same height */
+}
+
+.card:hover {
+    transform: translateY(-8px); /* More pronounced hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.card-icon {
+    font-size: 3rem; /* Larger icons */
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: block;
+    line-height: 1; /* Ensure icon doesn't add too much space */
+}
+
+.card h3 {
+    font-size: 1.6rem; /* Larger card titles */
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.card p {
+    color: var(--text-muted-color);
+    font-size: 0.95rem;
+    flex-grow: 1;
+    line-height: 1.7; /* Better readability */
+}
+
+/* Team Card Specifics */
+.team-card {
+    text-align: center;
+}
+.team-card img {
+    width: 140px; /* Larger team photos */
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px auto;
+    border: 4px solid var(--primary-color); /* Thicker, accented border */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
+}
+.team-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+.team-card .title {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: block;
+    font-weight: 500;
+}
+.team-card .social-links {
+    margin-top: auto; /* Push social links to bottom if card content varies */
+    padding-top: 15px;
+}
+.team-card .social-links a {
+    color: var(--text-muted-color);
+    margin: 0 10px; /* More spacing */
+    font-size: 1.4rem;
+    transition: color var(--transition-speed) ease;
+}
+.team-card .social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Market Data Table */
+.market-table {
+    width: 100%;
+    border-collapse: separate; /* Allows for border-radius on cells */
+    border-spacing: 0;
+    margin-top: 30px;
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+.market-table th, .market-table td {
+    padding: 18px 20px; /* Increased padding */
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.market-table th {
+    background-color: #2a2d39;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase; /* Uppercase headers */
+}
+.market-table td {
+    color: var(--text-muted-color);
+    font-size: 1rem;
+}
+.market-table tr:last-child td {
+    border-bottom: none;
+}
+.market-table tr:hover td { /* Row hover effect */
+    background-color: rgba(255,255,255,0.03);
+}
+.market-table .price-up {
+    color: var(--success-color);
+    font-weight: 500;
+}
+.market-table .price-down {
+    color: var(--danger-color);
+    font-weight: 500;
+}
+.market-table .token-logo {
+    width: 28px; /* Slightly larger token logos */
+    height: 28px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.market-table td:nth-child(1) { /* Asset name bold */
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+
+/* Footer */
+.site-footer {
+    background-color: var(--surface-color);
+    color: var(--text-muted-color);
+    padding: 50px 0; /* Increased padding */
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+.site-footer .logo { /* Footer logo style */
+    display: block;
+    margin-bottom: 20px;
+    font-size: 1.5rem; /* Smaller footer logo */
+}
+.site-footer p {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.footer-links li {
+    display: inline-block;
+    margin: 0 12px;
+}
+.footer-links li a {
+    color: var(--text-muted-color);
+    font-size: 0.9rem;
+}
+.footer-links li a:hover {
+    color: var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .main-nav ul {
+        /* Basic: Consider a burger menu for real projects */
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        display: none; /* Hide by default, show with JS for burger */
+    }
+    .main-nav ul li {
+        margin: 10px 0;
+    }
+    .header-right-content {
+        /* Adjust if using a burger menu */
+    }
+    .language-selector {
+        margin-left: 15px;
+    }
+    .grid-3-cols { /* For feature cards */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-group .btn {
+        margin: 8px 0;
+        width: 80%;
+        max-width: 300px;
+    }
+    .site-header .container {
+        flex-direction: column;
+    }
+    .logo {
+        margin-bottom: 15px;
+    }
+    .header-right-content {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column; /* Stack nav and lang selector */
+    }
+    .main-nav {
+        margin-bottom: 15px;
+         /* For demo, always show nav if no JS burger yet */
+        /* If you implement JS burger, this would be handled there */
+        /* display: block !important; */
+    }
+    .language-selector {
+        margin-left: 0; /* No margin when stacked */
+    }
+    .grid-3-cols, .grid-4-cols {
+        grid-template-columns: 1fr;
+    }
+    .market-table {
+        font-size: 0.9rem; /* Smaller font for table on mobile */
+    }
+    .market-table th, .market-table td {
+        padding: 12px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .container {
+        width: 95%; /* More space on very small screens */
+    }
+    .card {
+        padding: 25px;
+    }
+}
