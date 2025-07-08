@@ -37,7 +37,6 @@
 	"teamRoleFounder": "المؤسس والرئيس التنفيذي",
 	"teamBioAnbarzan": "أنبارزان قاد تطوير منصة RimToken منذ بدايتها، ويمتلك خبرة واسعة في تقنيات البلوكشين وريادة الأعمال الرقمية.",
 	"teamRoleCOO": "مدير العمليات",
-	"teamBioHamido": "حميدو مسؤول عن إدارة العمليات اليومية وضمان سير العمل بكفاءة عالية، وله إنجازات في تطوير الأنظمة المالية الرقمية.",
 	"teamRoleLeadDev": "قائد فريق البرمجة",
 	"teamBioHatan": "حاتم يشرف على فريق البرمجة وحقق نجاحات في بناء حلول ذكية وآمنة تعتمد على الذكاء الاصطناعي.",
 	"teamRoleCyber": "خبير الأمن السيبراني",
@@ -66,5 +65,96 @@
 		"إتاحة الوصول: بناء منصة شاملة تقلل الحواجز أمام الجميع."
 	],
 	"aboutJoinTitle": "انضم إلى رحلة ريم توكن",
-	"aboutJoin": "سواء كنت مطوراً أو فناناً أو عالماً أو شغوفاً بمستقبل الإنترنت اللامركزي، ريم توكن وشبكة Outer Rim ترحب بك. استكشف المنظومة وشارك في المجتمع وكن جزءاً من حركة الابتكار."
+	"aboutJoin": "سواء كنت مطوراً أو فناناً أو عالماً أو شغوفاً بمستقبل الإنترنت اللامركزي، ريم توكن وشبكة Outer Rim ترحب بك. استكشف المنظومة وشارك في المجتمع وكن جزءاً من حركة الابتكار.",
+	"passwordsDoNotMatch": "passwordsDoNotMatch",
+	"featuresTitle": "أهم ميزات ريم توكن (RIM)",
+	"featuresList": [
+		{
+			"title": "معاملات سريعة وبتكلفة منخفضة",
+			"points": [
+				"تأكيد شبه فوري للمعاملات، مثالي للاستخدام اليومي والعمليات الحساسة للوقت.",
+				"رسوم معاملات منخفضة جداً، مناسبة للمدفوعات الصغيرة والكبيرة."
+			]
+		},
+		{
+			"title": "إطار أمني قوي",
+			"points": [
+				"تقنيات تشفير متقدمة وآلية إجماع مرنة.",
+				"مراجعات أمنية دورية وفريق أمان مخصص لضمان سلامة الشبكة."
+			]
+		},
+		{
+			"title": "بنية قابلة للتوسع",
+			"points": [
+				"مصممة للتعامل مع حجم كبير من المعاملات.",
+				"جاهزة لمواكبة نمو المستخدمين وتوسع التطبيقات."
+			]
+		},
+		{
+			"title": "حوكمة يقودها المجتمع",
+			"points": [
+				"حاملو التوكن يشاركون في اتخاذ القرارات الرئيسية.",
+				"آلية تصويت شفافة تضمن سماع صوت المجتمع."
+			]
+		},
+		{
+			"title": "تكامل واستخدامات متعددة",
+			"points": [
+				"توكن أصلي يدعم منظومة متنامية من التطبيقات والخدمات.",
+				"استخدم RIM للوصول إلى ميزات وخدمات حصرية."
+			]
+		},
+		{
+			"title": "آلية التخزين والمكافآت",
+			"points": [
+				"أمّن الشبكة واحصل على مكافآت سلبية عبر تخزين التوكن.",
+				"نموذج تخزين مبتكر يوفر عوائد تنافسية."
+			]
+		},
+		{
+			"title": "تصميم يركز على المستخدم",
+			"points": [
+				"واجهات محفظة وتفاعل سهل وبديهي.",
+				"منصة مناسبة حتى للمبتدئين في العملات الرقمية."
+			]
+		}
+	],
+	"followUs": "followUs",
+	"userExists": "userExists",
+	"marketOverview": "marketOverview",
+	"latestMarketNews": "latestMarketNews",
+	"btcName": "btcName",
+	"ethName": "ethName",
+	"aaplName": "aaplName",
+	"googlName": "googlName",
+	"goldName": "goldName",
+	"oilName": "oilName",
+	"marketNewsList": "marketNewsList",
+	"logout": "logout",
+	"dashboard": "dashboard",
+	"welcome": "welcome",
+	"wallet": "wallet",
+	"trade": "trade",
+	"buySell": "buySell",
+	"sellDigitalCurrency": "sellDigitalCurrency",
+	"dashboardTitle": "dashboardTitle",
+	"sellBuy": "sellBuy",
+	"security": "security",
+	"welcomeUser": "welcomeUser",
+	"dashboardSubtitle": "dashboardSubtitle",
+	"walletCardTitle": "walletCardTitle",
+	"walletCardDesc": "walletCardDesc",
+	"manageWallet": "manageWallet",
+	"marketCardTitle": "marketCardTitle",
+	"marketCardDesc": "marketCardDesc",
+	"goToTrade": "goToTrade",
+	"accountSummary": "accountSummary",
+	"totalWalletBalance": "totalWalletBalance",
+	"last24hPL": "last24hPL",
+	"lastActivity": "lastActivity",
+	"lastActivitySample": "lastActivitySample",
+	"Sorry, page not found!": "Sorry, page not found!",
+	"Something broke!": "Something broke!",
+	"invalidCredentials": "invalidCredentials",
+	"swap": "swap"
 }

@@ -1,47 +1,313 @@
 <%- include('partials/header') %>
 
-<section class="hero" id="home">
-    <div class="container">
-        <h1><%- __('welcomeToRimtoken') %></h1>
-        <p><%- __('welcomeSubtitle') %></p>
-        <div class="btn-group">
-            <a href="#" class="btn btn-primary"><%- __('getStarted') %></a>
-            <a href="#" class="btn btn-secondary"><%- __('learnMore') %></a>
+<% var marketData = [
+  { id: 'btc', name: __('btcName'), symbol: 'BTC', price: 68500.00, image: 'https://logowik.com/content/uploads/images/bitcoin-btc.jpg' },
+  { id: 'eth', name: __('ethName'), symbol: 'ETH', price: 3550.00, image: 'https://logowik.com/content/uploads/images/ethereum-eth.jpg' },
+  { id: 'aapl', name: __('aaplName'), symbol: 'AAPL', price: 195.75, image: 'https://logowik.com/content/uploads/images/apple-logo-black4883.logowik.com.webp' },
+  { id: 'googl', name: __('googlName'), symbol: 'GOOGL', price: 177.30, image: 'https://logowik.com/content/uploads/images/google-g-20159197.logowik.com.webp' },
+  { id: 'gold', name: __('goldName'), symbol: 'XAU', price: 2350.55, image: 'https://cdn-icons-png.flaticon.com/512/2329/2329865.png' },
+  { id: 'oil', name: __('oilName'), symbol: 'WTI', price: 78.90, image: 'https://cdn-icons-png.flaticon.com/512/3063/3063251.png' }
+];
+var newsData = __('marketNewsList'); %>
+
+<!-- ===== شريط الأسعار أعلى الشعار ===== -->
+<div id="market-watch-section-container">
+    <div class="mw-ticker-wrapper">
+        <div class="mw-ticker-content">
+            <!-- سيتم ملء الشريط بالبيانات عبر JavaScript -->
         </div>
     </div>
-</section>
+</div>
 
-<section class="section" id="about">
-    <div class="container">
-        <h2 class="section-title"><%- __('aboutTitle') %></h2>
-        <div class="card">
-            <p><%- __('aboutIntro') %></p>
-            <h4><%- __('aboutVisionTitle') %></h4>
-            <p><%- __('aboutVision') %></p>
-            <h4><%- __('aboutPurposeTitle') %></h4>
-            <ul>
-                <% __('aboutPurposeList').forEach(function(item) { %>
-                    <li><%- item %></li>
-                <% }) %>
+<!-- ===== شعار ريم توكن والنص الترحيبي تحت شريط الأسعار ===== -->
+<div class="container" style="text-align:center; margin-top: 20px; margin-bottom: 0; position: relative;">
+    <div class="ecosystem-logo-glow-wrapper" style="display:inline-block; position:relative;">
+        <img src="/assets/rim-token-ecosystem.jpg" alt="Rimtoken Ecosystem Logo" style="max-width:180px; margin-bottom: 18px; display: block; margin-left: auto; margin-right: auto; position:relative; z-index:2;" />
+        <span class="ecosystem-logo-glow"></span>
+    </div>
+    <div style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); width: 340px; max-width: 90vw; background: rgba(16,36,68,0.92); border-radius: 18px; box-shadow: 0 4px 24px #0002; padding: 32px 24px; text-align: right; z-index: 3; min-width: 260px;">
+        <h1 style="font-size:1.35rem; font-weight:700; margin-bottom:10px; color:#FFD600; line-height:1.4; letter-spacing:0.5px; text-shadow:0 2px 8px #0002;"> <%= __('welcomeToRimtoken') %> </h1>
+        <p style="font-size:1rem; color:#adb5bd; margin-bottom:22px; max-width:350px; margin-left:auto; margin-right:auto; line-height:1.7;"> <%= __('welcomeSubtitle') %> </p>
+        <% if (user && user.name) { %>
+        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 18px; margin-bottom: 18px;">
+            <a href="/account" class="dashboard-btn flex items-center gap-2 px-6 py-3 rounded-full font-bold shadow mb-0 transition-all duration-150"
+                style="background: #fff; color: #0b57d0; border: 2px solid #0b57d0; font-size: 1.08rem;">
+                <i class="fas fa-home"></i> <%= __('dashboard') || 'Dashboard' %>
+            </a>
+            <span style="color: #0b57d0; font-weight: bold; font-size: 1.08rem;"><%= __('welcome') || 'Welcome' %>, <%= user.name %></span>
+        </div>
+        <% } else { %>
+        <div class="btn-group" style="margin-bottom: 18px; display: flex; justify-content: flex-end; gap: 10px;">
+            <a href="/login" class="btn btn-primary"><%= __('login') || 'Login' %></a>
+            <a href="/register" class="btn btn-secondary ml-2">تسجيل</a>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<!-- ========== بقية قسم السوق (البطاقات والأخبار) ========== -->
+<div id="market-watch-section-container">
+    <div class="mw-main-content">
+        <div class="mw-market-cards">
+            <div class="grid-header">
+                <h2><%= __('marketOverview') %></h2>
+            </div>
+            <div class="mw-grid">
+                <!-- سيتم ملء البطاقات بالبيانات عبر JavaScript -->
+            </div>
+        </div>
+        
+        <div class="mw-market-news">
+            <h2><%= __('latestMarketNews') %></h2>
+            <ul class="mw-news-list" id="news-list">
+                <!-- الأخبار ستملأ ديناميكياً -->
             </ul>
-            <h4><%- __('aboutPrinciplesTitle') %></h4>
-            <ul>
-                <% __('aboutPrinciplesList').forEach(function(item) { %>
-                    <li><%- item %></li>
-                <% }) %>
-            </ul>
-            <h4><%- __('aboutJoinTitle') %></h4>
-            <p><%- __('aboutJoin') %></p>
         </div>
     </div>
-</section>
-
-<section class="section" id="features" style="background-color: var(--surface-color);">
-    <div class="container">
-        <h2 class="section-title"><%- __('navFeatures') %></h2>
-        <!-- ... your features cards content ... -->
-    </div>
-</section>
+    <style>
+        :root {
+            --mw-bg-dark: #111827;
+            --mw-bg-light: #1f2937;
+            --mw-border: #374151;
+            --mw-text-primary: #f9fafb;
+            --mw-text-secondary: #9ca3af;
+            --mw-green: #34d399;
+            --mw-red: #f87171;
+            --mw-blue: #60a5fa;
+        }
+        #market-watch-section-container {
+            font-family: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--mw-bg-dark);
+            color: var(--mw-text-primary);
+            padding: 2rem 0 0 0;
+            direction: rtl;
+        }
+        .mw-ticker-wrapper {
+            width: 100%;
+            background-color: var(--mw-bg-light);
+            border-top: 1px solid var(--mw-border);
+            border-bottom: 1px solid var(--mw-border);
+            overflow: hidden;
+            padding: 0.75rem 0;
+        }
+        .mw-ticker-content {
+            display: flex;
+            white-space: nowrap;
+            animation: mw-scroll-animation 50s linear infinite;
+        }
+        .mw-ticker-item {
+            display: flex;
+            align-items: center;
+            margin: 0 1.5rem;
+            font-size: 0.9rem;
+        }
+        .mw-ticker-item .symbol { color: var(--mw-blue); font-weight: bold; margin-left: 0.5rem; }
+        .mw-ticker-item .price { margin-left: 0.5rem; }
+        .mw-ticker-item .change.price-up { color: var(--mw-green); }
+        .mw-ticker-item .change.price-down { color: var(--mw-red); }
+        @keyframes mw-scroll-animation {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .mw-main-content {
+            max-width: 1200px;
+            margin: 2.5rem auto 0;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+        @media (min-width: 992px) {
+            .mw-main-content {
+                grid-template-columns: 3fr 1fr;
+            }
+        }
+        .mw-market-cards .grid-header {
+             margin-bottom: 1.5rem;
+             border-bottom: 1px solid var(--mw-border);
+             padding-bottom: 0.5rem;
+        }
+        .mw-market-cards h2 {
+            color: #FFD600;
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px #0002;
+            transition: color 0.3s, text-shadow 0.3s;
+            position: relative;
+            animation: marketTitleGlow 2.5s infinite alternate;
+        }
+        @keyframes marketTitleGlow {
+            0% { text-shadow: 0 2px 8px #FFD60044, 0 0 0 #FFD600; }
+            100% { text-shadow: 0 2px 16px #FFD600cc, 0 0 8px #FFD600; }
+        }
+        .mw-market-cards h2:hover, .mw-market-news h2:hover {
+            color: #fff200;
+            text-shadow: 0 2px 24px #FFD600cc, 0 0 16px #FFD600;
+        }
+        .mw-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .mw-market-card {
+            background-color: var(--mw-bg-light);
+            border: 1px solid var(--mw-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .mw-market-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .mw-card-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        .mw-card-header img { width: 40px; height: 40px; margin-left: 1rem; border-radius: 50%; }
+        .mw-card-header .name { font-size: 1.25rem; font-weight: bold; }
+        .mw-card-header .symbol { font-size: 0.9rem; color: var(--mw-text-secondary); }
+        .mw-card-body .price { font-size: 1.75rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .mw-card-body .change { font-size: 1.1rem; font-weight: 600; }
+        .mw-card-body .change-arrow { margin-right: 0.25rem; }
+        .mw-card-body .change.price-up { color: var(--mw-green); }
+        .mw-card-body .change.price-down { color: var(--mw-red); }
+        .mw-market-news h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--mw-border);
+             padding-bottom: 0.5rem;
+        }
+        .mw-news-list { list-style: none; padding: 0; margin: 0; }
+        .mw-news-item { margin-bottom: 1rem; }
+        .mw-news-item a {
+            color: var(--mw-text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: flex-start;
+            transition: color 0.2s ease;
+        }
+        .mw-news-item a:hover { color: var(--mw-blue); }
+        .mw-card-header img, .mw-news-item img {
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid #FFD600;
+    box-shadow: 0 2px 8px #FFD60044;
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+.mw-news-item img {
+    width: 28px;
+    height: 28px;
+    margin-left: 0.75rem;
+    margin-top: 0.25rem;
+    filter: none;
+}
+        .ecosystem-logo-glow-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+        .ecosystem-logo-glow {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0.6;
+            z-index: 1;
+            animation: logo-glow-animation 3s ease-in-out infinite;
+        }
+        @keyframes logo-glow-animation {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+    <script type="application/json" id="market-data"><%- JSON.stringify(marketData) %></script>
+    <script type="application/json" id="news-data"><%- JSON.stringify(newsData) %></script>
+    <script>
+var marketData = JSON.parse(document.getElementById('market-data').textContent);
+var newsData = JSON.parse(document.getElementById('news-data').textContent);
+(function() {
+            const marketGrid = document.querySelector('#market-watch-section-container .mw-grid');
+            const tickerContent = document.querySelectorAll('#market-watch-section-container .mw-ticker-content')[0];
+            function initializeMarket() {
+                marketData.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'mw-market-card';
+                    card.innerHTML = `
+                        <div class="mw-card-header">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div>
+                                <div class="name">${item.name}</div>
+                                <div class="symbol">${item.symbol}</div>
+                            </div>
+                        </div>
+                        <div class="mw-card-body">
+                            <div class="price" id="price-${item.id}">$${item.price.toFixed(2)}</div>
+                            <div class="change" id="change-${item.id}">
+                                <span class="change-arrow"></span>
+                                <span>0.00%</span>
+                            </div>
+                        </div>
+                    `;
+                    marketGrid.appendChild(card);
+                    const tickerItem = document.createElement('div');
+                    tickerItem.className = 'mw-ticker-item';
+                    tickerItem.innerHTML = `
+                        <span class="symbol">${item.symbol}</span>
+                        <span class="price" id="ticker-price-${item.id}">$${item.price.toFixed(2)}</span>
+                        <span class="change" id="ticker-change-${item.id}">(0.00%)</span>
+                     `;
+                    tickerContent.appendChild(tickerItem);
+                });
+                tickerContent.innerHTML += tickerContent.innerHTML;
+            }
+            function updatePrices() {
+                marketData.forEach(item => {
+                    const changePercent = (Math.random() * 2 - 1);
+                    const newPrice = item.price * (1 + changePercent / 100);
+                    item.price = newPrice;
+                    const isUp = changePercent >= 0;
+                    const changeClass = isUp ? 'price-up' : 'price-down';
+                    const arrow = isUp ? '▲' : '▼';
+                    document.getElementById(`price-${item.id}`).innerText = `$${newPrice.toFixed(2)}`;
+                    const changeElement = document.getElementById(`change-${item.id}`);
+                    changeElement.className = `change ${changeClass}`;
+                    changeElement.innerHTML = `<span class="change-arrow">${arrow}</span> <span>${changePercent.toFixed(2)}%</span>`;
+                    document.getElementById(`ticker-price-${item.id}`).innerText = `$${newPrice.toFixed(2)}`;
+                    const tickerChangeElement = document.getElementById(`ticker-change-${item.id}`);
+                    tickerChangeElement.innerText = `(${changePercent.toFixed(2)}%)`;
+                    tickerChangeElement.className = `change ${changeClass}`;
+                });
+            }
+            // الأخبار
+            function initializeNews() {
+                const newsList = document.getElementById('news-list');
+                if (Array.isArray(newsData)) {
+                    newsData.forEach(news => {
+                        const li = document.createElement('li');
+                        li.className = 'mw-news-item';
+                        li.innerHTML = `<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="News icon"><span>${news}</span></a>`;
+                        newsList.appendChild(li);
+                    });
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    initializeMarket();
+                    setInterval(updatePrices, 3500);
+                    initializeNews();
+                });
+            } else {
+                initializeMarket();
+                setInterval(updatePrices, 3500);
+                initializeNews();
+            }
+        })();
+    </script>
+</div>
 
 <section class="section" id="team">
     <div class="container">
@@ -52,12 +318,6 @@
                 <h4>Anbarzan</h4>
                 <span class="title"><%- __('teamRoleFounder') %></span>
                 <p><%- __('teamBioAnbarzan') %></p>
-            </div>
-            <div class="card team-card">
-                <img src="/images/team-members/hamido.jpg" alt="Hamido" />
-                <h4>Hamido</h4>
-                <span class="title"><%- __('teamRoleCOO') %></span>
-                <p><%- __('teamBioHamido') %></p>
             </div>
             <div class="card team-card">
                 <img src="/images/team-members/hatan.jpg" alt="Hatan" />
@@ -87,11 +347,60 @@
     </div>
 </section>
 
-<section class="section" id="market" style="background-color: var(--surface-color);">
+<!-- قسم حول ريم توكن (About) في آخر الصفحة -->
+<section class="section" id="about">
     <div class="container">
-        <h2 class="section-title"><%- __('navMarket') %></h2>
-        <!-- ... your market table content ... -->
+        <h2 class="section-title"><%- __('aboutTitle') %></h2>
+        <div class="card">
+            <p><%- __('aboutIntro') %></p>
+            <h4><%- __('aboutVisionTitle') %></h4>
+            <p><%- __('aboutVision') %></p>
+            <h4><%- __('aboutPurposeTitle') %></h4>
+            <ul>
+                <% __('aboutPurposeList').forEach(function(item) { %>
+                    <li><%- item %></li>
+                <% }) %>
+            </ul>
+            <h4><%- __('aboutPrinciplesTitle') %></h4>
+            <ul>
+                <% __('aboutPrinciplesList').forEach(function(item) { %>
+                    <li><%- item %></li>
+                <% }) %>
+            </ul>
+            <h4><%- __('aboutJoinTitle') %></h4>
+            <p><%- __('aboutJoin') %></p>
+
+            <!-- روابط التواصل الاجتماعي -->
+            <div style="margin-top: 32px; text-align: center;">
+                <h4 style="margin-bottom: 12px; color: #1976d2;">
+                  <%- __('followUs') ? __('followUs') : 'تابعنا على منصات التواصل' %>
+                </h4>
+                <div style="display: flex; justify-content: center; gap: 22px;">
+                    <a href="https://twitter.com/rimtoken" target="_blank" title="Twitter" style="display:inline-block;"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter" style="width:32px;height:32px;filter: grayscale(0.2);"></a>
+                    <a href="https://t.me/rimtoken" target="_blank" title="Telegram" style="display:inline-block;"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram" style="width:32px;height:32px;filter: grayscale(0.2);"></a>
+                    <a href="https://discord.gg/rimtoken" target="_blank" title="Discord" style="display:inline-block;"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" style="width:32px;height:32px;filter: grayscale(0.2);"></a>
+                    <a href="mailto:info@rimtoken.com" target="_blank" title="Email" style="display:inline-block;"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" style="width:32px;height:32px;filter: grayscale(0.2);"></a>
+                </div>
+            </div>
+            <!-- نهاية روابط التواصل -->
+        </div>
     </div>
 </section>
 
 <%- include('partials/footer') %>
+
+<% let shortcutStyle = '';
+if (user && user.name) {
+  shortcutStyle = `display: flex; flex-direction: column; align-items: ${currentLocale === 'ar' ? 'flex-end' : 'flex-start'}; position: absolute; top: 80px; ${currentLocale === 'ar' ? 'right: 32px;' : 'left: 32px;'} z-index: 1000;`;
+%>
+<div class="dashboard-shortcut" style="<%= shortcutStyle %>">
+    <a href="/account" class="dashboard-btn flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-bold shadow mb-3 transition-all duration-150">
+        <i class="fas fa-home"></i> <%= __('dashboard') %>
+    </a>
+    <div class="flex flex-col gap-2 w-full mt-2">
+        <a href="/wallet" class="dashboard-link block text-blue-700 hover:text-blue-900 bg-blue-100 hover:bg-blue-200 rounded-lg px-4 py-2 font-semibold transition-all duration-150 text-center"><%= __('wallet') %></a>
+        <a href="/trade" class="dashboard-link block text-green-700 hover:text-green-900 bg-green-100 hover:bg-green-200 rounded-lg px-4 py-2 font-semibold transition-all duration-150 text-center"><%= __('trade') %></a>
+        <a href="/sell" class="dashboard-link block text-yellow-700 hover:text-yellow-900 bg-yellow-100 hover:bg-yellow-200 rounded-lg px-4 py-2 font-semibold transition-all duration-150 text-center"><%= __('buySell') %></a>
+    </div>
+</div>
+<% } %>

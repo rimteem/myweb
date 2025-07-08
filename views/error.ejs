@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+<div class="container" style="margin-top:60px; text-align:center;">
+  <h1 style="font-size:2.5rem; color:#dc3545; margin-bottom:18px;">Sorry, page not found!</h1>
+  <% if (error && error.status) { %>
+    <h2 style="color:#888;">Error <%= error.status %></h2>
+  <% } %>
+  <% if (message) { %>
+    <p style="color:#888; margin-bottom:18px;"><%= message %></p>
+  <% } %>
+  <a href="/" class="btn btn-primary">Back to Home</a>
+</div>
+<%- include('partials/footer') %>

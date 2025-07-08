@@ -1,0 +1,42 @@
+/* Coin Slider Styles */
+.coin-slider-container {
+  width: 100vw;
+  background: #18181b;
+  padding: 18px 0 10px 0;
+  overflow: hidden;
+  position: relative;
+  border-top: 2px solid #E0B861;
+}
+.coin-slider {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  animation: coin-slide 30s linear infinite;
+}
+.coin-slider img {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 6px;
+  transition: transform 0.2s;
+}
+.coin-slider img:hover {
+  transform: scale(1.12);
+  box-shadow: 0 4px 16px #E0B86144;
+}
+@keyframes coin-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (max-width: 768px) {
+  .coin-slider {
+    gap: 20px;
+  }
+  .coin-slider img {
+    height: 36px;
+    width: 36px;
+  }
+}

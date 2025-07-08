@@ -1,0 +1,259 @@
+<%- include('partials/header', { user: user, currentLocale: currentLocale }) %>
+<div class="main-container buy-crypto-container">
+    <h1 class="buy-crypto-title">Explore & Trade Top Digital Currencies</h1>
+    <p class="buy-crypto-subtitle">Fast, Secure, and Ready for the Future. Select a currency to see its features.</p>
+    <div class="buy-crypto-slider-container">
+        <div class="buy-crypto-slider">
+            <div class="buy-crypto-slide"><img src="/images/rimtoken.jpg" alt="RimToken - The Future of Decentralized Finance"></div>
+            <div class="buy-crypto-slide"><img src="/images/binance.jpg" alt="Binance Coin (BNB) - Powering the Binance Ecosystem"></div>
+            <div class="buy-crypto-slide"><img src="/images/usdt.jpg" alt="Digital Dollar (USDT) - The Stablecoin Standard"></div>
+        </div>
+        <button class="buy-crypto-slider-btn prev">❮</button>
+        <button class="buy-crypto-slider-btn next">❯</button>
+        <div class="buy-crypto-slider-dots">
+            <span class="buy-crypto-dot active"></span>
+            <span class="buy-crypto-dot"></span>
+            <span class="buy-crypto-dot"></span>
+        </div>
+    </div>
+    <div class="buy-crypto-content-container">
+        <div class="buy-crypto-content-card active" data-content="rimtoken">
+            <h2>My Currency (RimToken)</h2>
+            <ul>
+                <li>✓ Ultra-Fast Transactions for Point of Sale</li>
+                <li>✓ Low Gas Fees for Everyday Use</li>
+                <li>✓ Staking Rewards for Holders</li>
+                <li>✓ Fully Decentralized and Community-Governed</li>
+            </ul>
+            <a href="/payment-points" class="buy-crypto-buy-button">Buy RimToken Now</a>
+        </div>
+        <div class="buy-crypto-content-card" data-content="binance">
+            <h2>Binance Coin (BNB)</h2>
+            <ul>
+                <li>✓ Powers the vast Binance Ecosystem</li>
+                <li>✓ Used for Trading Fee Discounts on Binance</li>
+                <li>✓ High Liquidity and Market Trust</li>
+                <li>✓ Supports a wide range of DApps and Projects</li>
+            </ul>
+            <a href="/payment-points" class="buy-crypto-buy-button">Buy BNB Now</a>
+        </div>
+        <div class="buy-crypto-content-card" data-content="usdt">
+            <h2>Digital Dollar (USDT)</h2>
+            <ul>
+                <li>✓ Stable Value Pegged 1:1 with the US Dollar</li>
+                <li>✓ Perfect for Hedging Against Market Volatility</li>
+                <li>✓ Widely Accepted on All Major Exchanges</li>
+                <li>✓ High-Speed Transfers Across Multiple Blockchains</li>
+            </ul>
+            <a href="/payment-points" class="buy-crypto-buy-button">Buy USDT Now</a>
+        </div>
+    </div>
+    <div style="margin: 32px 0; text-align: center;">
+        <button id="connect-metamask-btn" style="background: #f6851b; color: #fff; border: none; padding: 14px 32px; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 2px 8px rgba(246,133,27,0.15); transition: background 0.2s;">
+            <img src="/images/binance.jpg" alt="MetaMask" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 10px; border-radius: 50%;"> Connect MetaMask
+        </button>
+        <div id="metamask-status" style="margin-top: 16px; color: #00e0ff; font-weight: bold;"></div>
+    </div>
+    <a href="/payment-points" class="buy-crypto-buy-button">Go to Payment Points</a>
+</div>
+<style>
+.buy-crypto-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #0b1a33;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,224,255,0.1);
+    padding: 30px 40px;
+    color: #e0e0e0;
+    text-align: center;
+}
+.buy-crypto-title {
+    color: #fff;
+    font-weight: 700;
+}
+.buy-crypto-subtitle {
+    color: #e0e0e0;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+.buy-crypto-slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+.buy-crypto-slider {
+    display: flex;
+    width: 300%;
+    transition: transform 0.6s cubic-bezier(0.68,-0.55,0.27,1.55);
+}
+.buy-crypto-slide {
+    width: 33.333%;
+    flex-shrink: 0;
+}
+.buy-crypto-slide img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+    background: #101c2c;
+}
+.buy-crypto-slider-btn {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    transform: translateY(-50%);
+}
+.buy-crypto-slider-btn.prev { left: 15px; }
+.buy-crypto-slider-btn.next { right: 15px; }
+.buy-crypto-slider-btn:hover { background-color: rgba(0,224,255,0.7); }
+.buy-crypto-slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+.buy-crypto-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.buy-crypto-dot.active {
+    background-color: #00e0ff;
+    transform: scale(1.2);
+}
+.buy-crypto-content-container {
+    margin-top: 30px;
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.buy-crypto-content-card {
+    position: static;
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #102444;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: box-shadow 0.3s;
+    box-shadow: 0 2px 12px rgba(0,224,255,0.08);
+}
+.buy-crypto-content-card.active {
+    box-shadow: 0 5px 20px rgba(0,224,255,0.18);
+}
+.buy-crypto-content-card h2 {
+    color: #00e0ff;
+    margin-top: 0;
+    text-align: center;
+}
+.buy-crypto-content-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.buy-crypto-content-card li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.buy-crypto-content-card li:last-child { border-bottom: none; }
+.buy-crypto-buy-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #00e0ff;
+    color: #0b1a33;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.buy-crypto-buy-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,224,255,0.4);
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.querySelector('.buy-crypto-slider');
+    const slides = document.querySelectorAll('.buy-crypto-slide');
+    const prevBtn = document.querySelector('.buy-crypto-slider-btn.prev');
+    const nextBtn = document.querySelector('.buy-crypto-slider-btn.next');
+    const dots = document.querySelectorAll('.buy-crypto-dot');
+    const contentCards = document.querySelectorAll('.buy-crypto-content-card');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    const currencyMap = ['rimtoken', 'binance', 'usdt'];
+    function goToSlide(index) {
+        if (index < 0) { index = totalSlides - 1; } else if (index >= totalSlides) { index = 0; }
+        slider.style.transform = `translateX(-${index * (100 / totalSlides)}%)`;
+        contentCards.forEach(card => card.classList.remove('active'));
+        document.querySelector(`.buy-crypto-content-card[data-content="${currencyMap[index]}"]`).classList.add('active');
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+        currentIndex = index;
+    }
+    nextBtn.addEventListener('click', () => { goToSlide(currentIndex + 1); });
+    prevBtn.addEventListener('click', () => { goToSlide(currentIndex - 1); });
+    dots.forEach((dot, index) => { dot.addEventListener('click', () => { goToSlide(index); }); });
+    function handleUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currency = urlParams.get('currency');
+        if (currency) {
+            const currencyIndex = currencyMap.indexOf(currency.toLowerCase());
+            if (currencyIndex !== -1) { goToSlide(currencyIndex); }
+        } else { goToSlide(0); }
+    }
+    let autoPlayInterval = setInterval(() => { goToSlide(currentIndex + 1); }, 5000);
+    document.querySelector('.buy-crypto-slider-container').addEventListener('mouseenter', () => { clearInterval(autoPlayInterval); });
+    document.querySelector('.buy-crypto-slider-container').addEventListener('mouseleave', () => { autoPlayInterval = setInterval(() => { goToSlide(currentIndex + 1); }, 5000); });
+    handleUrlParams();
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+<script>
+// مثال استخدام مزود RPC مع مفتاح API
+const bscProvider = new ethers.providers.JsonRpcProvider('https://bsc-mainnet.nodereal.io/v1/160ebc56e5384d98b5b0d44ed95dc7da');
+// يمكنك الآن استخدام bscProvider لقراءة بيانات البلوكتشين أو إرسال معاملات
+
+document.getElementById('connect-metamask-btn').onclick = async function() {
+    if (window.ethereum) {
+        try {
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const address = await signer.getAddress();
+            document.getElementById('metamask-status').innerText = 'Connected: ' + address;
+        } catch (err) {
+            document.getElementById('metamask-status').innerText = 'Connection rejected.';
+        }
+    } else {
+        document.getElementById('metamask-status').innerText = 'Please install MetaMask!';
+    }
+};
+</script>
+<%- include('partials/footer') %>

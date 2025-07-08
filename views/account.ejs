@@ -1,0 +1,444 @@
+<%- include('partials/header', { user: user, currentLocale: currentLocale }) %>
+<div class="dashboard-container<%= currentLocale === 'ar' ? ' rtl' : '' %>">
+    <!-- ======================= الشريط الجانبي ======================= -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <%= __('dashboardTitle') || 'MyCrypto' %>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="<%= getLocalizedPath('/account') %>" class="active">
+                        <i class="fas fa-home icon"></i>
+                        <span><%= __('dashboard') || 'Dashboard' %></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= getLocalizedPath('/wallet') %>">
+                        <i class="fas fa-wallet icon"></i>
+                        <span><%= __('wallet') || 'Wallet' %></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= getLocalizedPath('/trade') %>">
+                        <i class="fas fa-exchange-alt icon"></i>
+                        <span><%= __('trade') || 'Trade' %></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= getLocalizedPath('/sell') %>">
+                        <i class="fas fa-dollar-sign icon"></i>
+                        <span><%= __('sellBuy') || 'Sell / Buy' %></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= getLocalizedPath('/security') %>">
+                        <i class="fas fa-shield-alt icon"></i>
+                        <span><%= __('security') || 'Security' %></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/logout"><%= __('logout') || 'Logout' %></a>
+        </div>
+    </aside>
+    <!-- ======================= المحتوى الرئيسي ======================= -->
+    <main class="main-content">
+        <header class="content-header">
+            <div></div>
+            <div class="user-avatar">
+                <% if (user && user.name) { %>
+                    <%= user.name.charAt(0).toUpperCase() %>
+                <% } else { %>
+                    U
+                <% } %>
+            </div>
+        </header>
+        <section>
+            <div class="welcome-message">
+                <h1><%= __('welcomeUser', user && user.name ? user.name : __('guest')) %></h1>
+                <p><%= __('dashboardSubtitle') || 'Manage your info, wallet, and account security in one place.' %></p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="icon-container"><i class="fas fa-wallet"></i></div>
+                    <div class="card-content">
+                        <h3><%= __('walletCardTitle') || 'Your Wallet' %></h3>
+                        <p><%= __('walletCardDesc') || 'View your balance, send and receive crypto easily and securely.' %></p>
+                        <a href="<%= getLocalizedPath('/wallet') %>" class="btn"><%= __('manageWallet') || 'Manage Wallet →' %></a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon-container"><i class="fas fa-chart-line"></i></div>
+                    <div class="card-content">
+                        <h3><%= __('marketCardTitle') || 'Market' %></h3>
+                        <p><%= __('marketCardDesc') || 'Start trading crypto with advanced tools and live prices.' %></p>
+                        <a href="<%= getLocalizedPath('/trade') %>" class="btn"><%= __('goToTrade') || 'Go to Trade →' %></a>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="account-summary">
+                <h2><%= __('accountSummary') || 'Account Summary' %></h2>
+                <div class="summary-item">
+                    <span class="label"><%= __('totalWalletBalance') || 'Total Wallet Balance' %></span>
+                    <span class="value">$1,250.75</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label"><%= __('last24hPL') || 'Last 24h P/L' %></span>
+                    <span class="value positive">+$75.20 (6.4%)</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label"><%= __('lastActivity') || 'Last Activity' %></span>
+                    <span class="value"><%= __('lastActivitySample') || 'Buy 0.01 BTC' %></span>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<%- include('partials/footer') %>
+
+<style>
+/* --- Professional Golden/Brown/Green Theme --- */
+:root {
+    /* Color Palette */
+    --color-gold-primary: #D4AF37;       /* Main gold for highlights and active elements */
+    --color-gold-dark: #B8860B;          /* Darker gold for borders */
+    --color-font-brown-dark: #5C4033;    /* Dark brown for primary text on light backgrounds */
+    --color-font-brown-light: #8B5A2B;   /* Lighter brown for secondary text */
+    --color-column-green-dark: #2E4636;  /* Deep green for "column" backgrounds (sidebar, cards) */
+    --color-column-green-light: #4A6D55; /* Lighter green for hover/active states on columns */
+    --color-bg-light: #FCF6E8;           /* Light beige/off-white main background */
+    --color-font-on-dark: #F5F5DC;       /* Readable light color for text on dark backgrounds */
+    --color-positive: #50C878;           /* A bright, clear green for positive values */
+    --color-negative: #D22B2B;           /* A clear red for negative values */
+
+    /* Theme Mapping */
+    --bg-color: var(--color-bg-light);
+    --sidebar-bg: var(--color-column-green-dark);
+    --card-bg: var(--color-column-green-dark);
+    --accent-color: var(--color-gold-primary);
+    --accent-color-hover-bg: var(--color-column-green-light);
+    --text-primary: var(--color-font-brown-dark);
+    --text-secondary: var(--color-font-brown-light);
+    --border-color: var(--color-gold-dark);
+}
+
+body {
+    margin: 0;
+    font-family: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.dashboard-container {
+    display: flex;
+}
+.dashboard-container.rtl {
+    direction: rtl;
+}
+
+/* --- Sidebar (Green Column) --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 24px 12px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+.dashboard-container.rtl .sidebar {
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid var(--border-color);
+}
+
+.sidebar-header {
+    padding: 0 12px 16px 12px;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    padding: 14px 28px;
+    text-decoration: none;
+    color: var(--color-font-on-dark);
+    font-weight: 700;
+    border-radius: 999px;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 1.08rem;
+    margin-bottom: 6px;
+}
+
+.sidebar-nav li a .icon {
+    font-size: 1.2rem;
+    margin-right: 16px;
+    width: 24px;
+    color: var(--accent-color);
+}
+.dashboard-container.rtl .sidebar-nav li a .icon {
+    margin-right: 0;
+    margin-left: 16px;
+}
+
+.sidebar-nav li a.active,
+.sidebar-nav li a:hover {
+    background-color: var(--accent-color-hover-bg);
+    color: #FFFFFF;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 12px 24px;
+    text-align: center;
+}
+
+.sidebar-footer a {
+    color: var(--color-font-on-dark);
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    font-weight: 700;
+}
+
+.sidebar-footer a:hover {
+    opacity: 1;
+}
+
+/* --- Main Content --- */
+.main-content {
+    margin-left: 260px;
+    padding: 32px 48px;
+    width: calc(100% - 260px);
+}
+.dashboard-container.rtl .main-content {
+    margin-left: 0;
+    margin-right: 260px;
+}
+
+.content-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.user-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color) 60%, var(--color-column-green-light) 100%);
+    color: var(--color-font-brown-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(212,175,55,0.12);
+}
+
+.welcome-message {
+    text-align: center;
+    margin-bottom: 44px;
+}
+
+.welcome-message h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.welcome-message p {
+    font-size: 1.18rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* --- Content Cards (Green Columns) --- */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--border-color);
+    border-radius: 18px;
+    padding: 32px 28px 28px 28px;
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: var(--color-font-on-dark);
+    box-shadow: 0 4px 18px rgba(44, 70, 54, 0.13);
+    min-height: 170px;
+}
+
+.card:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 10px 32px rgba(44, 70, 54, 0.18);
+}
+
+.card .icon-container {
+    font-size: 1.8rem;
+    margin-right: 20px;
+    color: var(--accent-color);
+}
+.dashboard-container.rtl .card .icon-container {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.card .card-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    font-weight: 800;
+}
+
+.card .card-content p {
+    margin: 0 0 18px 0;
+    line-height: 1.7;
+    opacity: 0.93;
+    font-size: 1.05rem;
+}
+
+.card .card-content a.btn {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 800;
+    font-size: 1.08rem;
+    transition: color 0.2s;
+}
+
+.card .card-content a.btn:hover {
+    color: #fff;
+    text-shadow: 0 1px 8px var(--accent-color);
+}
+
+/* --- Divider --- */
+.divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color) 0%, var(--color-column-green-light) 100%);
+    border-radius: 2px;
+    margin: 36px 0 36px 0;
+    opacity: 0.18;
+}
+
+/* --- Account Summary (Green Column) --- */
+.account-summary {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--border-color);
+    border-radius: 18px;
+    padding: 32px 28px 28px 28px;
+    color: var(--color-font-on-dark);
+    box-shadow: 0 4px 18px rgba(44, 70, 54, 0.13);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.account-summary h2 {
+    margin-top: 0;
+    margin-bottom: 28px;
+    color: #FFFFFF;
+    font-size: 1.45rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(184, 134, 11, 0.22);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item .label {
+    font-weight: 700;
+    opacity: 0.85;
+    font-size: 1.05rem;
+}
+
+.summary-item .value {
+    font-weight: 900;
+    font-size: 1.13rem;
+}
+
+.value.positive {
+    color: var(--color-positive);
+}
+.value.negative {
+    color: var(--color-negative);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1200px) {
+    .main-content {
+        padding: 32px 18px 24px 18px;
+    }
+    .cards-grid {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar { width: 220px; }
+    .main-content {
+        width: calc(100% - 220px);
+        margin-left: 220px;
+        padding: 24px;
+    }
+    .dashboard-container.rtl .main-content {
+        margin-left: 0;
+        margin-right: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container { flex-direction: column; }
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: none;
+    }
+    .main-content {
+        width: 100%;
+        margin: 0;
+        padding: 24px 16px;
+    }
+    .welcome-message h1 { font-size: 1.8rem; }
+}
+</style>

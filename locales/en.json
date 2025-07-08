@@ -37,7 +37,6 @@
 	"teamRoleFounder": "Founder & CEO",
 	"teamBioAnbarzan": "Anbarzan led the development of RimToken from the start, with extensive experience in blockchain and digital entrepreneurship.",
 	"teamRoleCOO": "COO",
-	"teamBioHamido": "Hamido manages daily operations and ensures workflow efficiency, with achievements in digital financial systems.",
 	"teamRoleLeadDev": "Lead Developer",
 	"teamBioHatan": "Hatan leads the programming team and has succeeded in building smart, secure AI-based solutions.",
 	"teamRoleCyber": "Cybersecurity Expert",
@@ -66,5 +65,96 @@
 		"Accessibility: Striving to create an inclusive platform that lowers barriers to entry for creators and users alike."
 	],
 	"aboutJoinTitle": "Join the Rimtoken Journey",
-	"aboutJoin": "Whether you're a developer looking to build the next groundbreaking dApp, an artist exploring new digital mediums, a scientist seeking collaborative funding, or simply someone passionate about the future of a truly decentralized and user-owned internet, Rimtoken and the Outer Rim Network welcome you. Explore our ecosystem, get involved in our community, and be part of the movement building at the rim of innovation."
+	"aboutJoin": "Whether you're a developer looking to build the next groundbreaking dApp, an artist exploring new digital mediums, a scientist seeking collaborative funding, or simply someone passionate about the future of a truly decentralized and user-owned internet, Rimtoken and the Outer Rim Network welcome you. Explore our ecosystem, get involved in our community, and be part of the movement building at the rim of innovation.",
+	"passwordsDoNotMatch": "passwordsDoNotMatch",
+	"featuresTitle": "Key Features of Rimtoken (RIM)",
+	"featuresList": [
+		{
+			"title": "Swift & Economical Transactions",
+			"points": [
+				"Near-instantaneous transaction confirmations, ideal for everyday use and time-sensitive operations.",
+				"Ultra-low transaction fees for both micropayments and larger transfers."
+			]
+		},
+		{
+			"title": "Robust Security Framework",
+			"points": [
+				"State-of-the-art cryptographic techniques and resilient consensus mechanism.",
+				"Regular security audits and a dedicated security team ensure network integrity."
+			]
+		},
+		{
+			"title": "Scalable Architecture",
+			"points": [
+				"Handles high throughput of transactions for mass adoption.",
+				"Future-proofed to accommodate growing user demand and ecosystem expansion."
+			]
+		},
+		{
+			"title": "Community-Driven Governance",
+			"points": [
+				"Token holders participate in key governance decisions.",
+				"Transparent voting mechanism ensures the community's voice is heard."
+			]
+		},
+		{
+			"title": "Ecosystem Integration & Utility",
+			"points": [
+				"Native utility token powering a growing ecosystem of DApps, platforms, and services.",
+				"Use RIM for exclusive features, services, and unique platform offerings."
+			]
+		},
+		{
+			"title": "Staking & Rewards Mechanism",
+			"points": [
+				"Secure the network and earn passive rewards by staking RIM tokens.",
+				"Innovative staking model offers competitive returns and incentivizes participation."
+			]
+		},
+		{
+			"title": "User-Centric Design",
+			"points": [
+				"Intuitive wallet interfaces and platform interactions.",
+				"Accessible even for crypto newcomers."
+			]
+		}
+	],
+	"followUs": "followUs",
+	"userExists": "userExists",
+	"dashboard": "Dashboard",
+	"welcome": "Welcome",
+	"marketOverview": "marketOverview",
+	"latestMarketNews": "latestMarketNews",
+	"btcName": "btcName",
+	"ethName": "ethName",
+	"aaplName": "aaplName",
+	"googlName": "googlName",
+	"goldName": "goldName",
+	"oilName": "oilName",
+	"marketNewsList": "marketNewsList",
+	"logout": "logout",
+	"wallet": "wallet",
+	"trade": "trade",
+	"buySell": "buySell",
+	"sellDigitalCurrency": "sellDigitalCurrency",
+	"dashboardTitle": "dashboardTitle",
+	"sellBuy": "sellBuy",
+	"security": "security",
+	"welcomeUser": "welcomeUser",
+	"dashboardSubtitle": "dashboardSubtitle",
+	"walletCardTitle": "walletCardTitle",
+	"walletCardDesc": "walletCardDesc",
+	"manageWallet": "manageWallet",
+	"marketCardTitle": "marketCardTitle",
+	"marketCardDesc": "marketCardDesc",
+	"goToTrade": "goToTrade",
+	"accountSummary": "accountSummary",
+	"totalWalletBalance": "totalWalletBalance",
+	"last24hPL": "last24hPL",
+	"lastActivity": "lastActivity",
+	"lastActivitySample": "lastActivitySample",
+	"Sorry, page not found!": "Sorry, page not found!",
+	"Something broke!": "Something broke!",
+	"invalidCredentials": "invalidCredentials",
+	"swap": "swap"
 }

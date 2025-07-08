@@ -1,0 +1,41 @@
+<%- include('partials/header', { user: user, currentLocale: currentLocale }) %>
+<section class="payment-points-section">
+  <div class="container">
+    <h1 class="payment-title">Payment Points</h1>
+    <p class="payment-desc">Choose your preferred payment method to complete your transaction securely.</p>
+    <div class="payment-points-list">
+      <div class="payment-point">
+        <img src="/assets/wallet.jpg" alt="Bank Transfer" class="payment-icon" />
+        <h2>Bank Transfer</h2>
+        <p>Pay directly via your bank account. Fast and secure.</p>
+        <a href="#" class="payment-btn">Pay Now</a>
+      </div>
+      <div class="payment-point">
+        <img src="/assets/rim1-token-logo.jpg" alt="Crypto" class="payment-icon" />
+        <h2>Crypto Payment</h2>
+        <p>Pay using your favorite cryptocurrency wallet.</p>
+        <a href="#" class="payment-btn">Pay with Crypto</a>
+      </div>
+      <div class="payment-point">
+        <img src="/assets/register-icon.jpg" alt="Card" class="payment-icon" />
+        <h2>Credit/Debit Card</h2>
+        <p>Pay instantly using your card. Secure and easy.</p>
+        <a href="#" class="payment-btn">Pay by Card</a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.payment-points-section { min-height: 80vh; background: #181818; padding: 60px 0; }
+.payment-title { color: #FFD600; font-size: 2.2rem; font-weight: 900; text-align: center; margin-bottom: 18px; }
+.payment-desc { color: #fff; text-align: center; margin-bottom: 36px; font-size: 1.15rem; }
+.payment-points-list { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; }
+.payment-point { background: #102444; border-radius: 18px; box-shadow: 0 4px 24px #0002; padding: 32px 24px; min-width: 260px; max-width: 320px; text-align: center; color: #fff; }
+.payment-icon { width: 64px; height: 64px; border-radius: 12px; margin-bottom: 18px; background: #fff; }
+.payment-point h2 { color: #FFD600; font-size: 1.25rem; font-weight: bold; margin-bottom: 10px; }
+.payment-point p { color: #adb5bd; font-size: 1rem; margin-bottom: 18px; }
+.payment-btn { display: inline-block; background: #FFD600; color: #102444; font-weight: bold; padding: 10px 28px; border-radius: 8px; text-decoration: none; transition: background 0.2s; }
+.payment-btn:hover { background: #D4AF37; color: #fff; }
+@media (max-width: 900px) { .payment-points-list { flex-direction: column; align-items: center; } }
+</style>
+<%- include('partials/footer') %>

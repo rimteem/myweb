@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= __('siteTitle') %></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">    <link rel="stylesheet" href="/css/tailwind.generated.css">
     <% if (currentLocale === 'ar') { %>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <% } else { %>
@@ -13,26 +13,39 @@
 </head>
 <body>
     <header class="site-header">
-        <div class="container header-container">
-            <a href="<%= getLocalizedPath('/') %>" class="logo">Rim<span>token</span></a>
+        <div class="container header-container" style="max-width: 1440px; min-width: 340px; width: 98%; margin: 0 auto;">
+            <a href="<%= getLocalizedPath('/') %>" class="logo flex items-center gap-2 text-decoration-none group">
+                <img src="/assets/rim1-token-logo.jpg" alt="Rimtoken Logo" class="logo-img transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" style="height: 44px; width: auto; max-width: 120px; display: inline-block; vertical-align: middle; background: transparent; border: none; box-shadow: none; filter: drop-shadow(0 0 12px #FFD60088);" />
+                <span class="font-bold" style="color: #FFD600; font-weight: bold; font-size: 1.7rem; letter-spacing: 1px; text-shadow: 0 2px 8px #0002; transition: color 0.3s;">Rim<span class="text-blue-500 group-hover:text-yellow-400 transition-colors duration-300">token</span></span>
+            </a>
             <div class="header-right-content">
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="<%= getLocalizedPath('/') %>#about" class="active"><%= __('navAbout') %></a></li>
-                        <li><a href="<%= getLocalizedPath('/') %>#features"><%= __('navFeatures') %></a></li>
+                        <li><a href="<%= getLocalizedPath('/sell-digital-currency') %>"><%= currentLocale === 'en' ? 'Buy Crypto' : __('sellDigitalCurrency') || 'بيع العملات الرقمية' %></a></li>
+                        <li><a href="<%= getLocalizedPath('/') %>#market-watch-section-container"><%= __('navMarket') %></a></li>
+                        <li><a href="<%= getLocalizedPath('/wallet') %>"><%= currentLocale === 'en' ? 'Wallet' : __('wallet') || 'محفظة' %></a></li>
+                        <li><a href="<%= getLocalizedPath('/trade') %>"><%= currentLocale === 'en' ? 'Swap' : __('swap') || 'سواب' %></a></li>
                         <li><a href="<%= getLocalizedPath('/') %>#team"><%= __('navTeam') %></a></li>
-                        <li><a href="<%= getLocalizedPath('/') %>#market"><%= __('navMarket') %></a></li>
+                        <li><a href="<%= getLocalizedPath('/') %>#about"><%= __('navAbout') %></a></li>
                     </ul>
                 </nav>
                 <div class="auth-and-lang-selector">
                     <div class="header-auth-icons">
-                        <a href="<%= getLocalizedPath('/login') %>" title="<%= __('login') %>">
-                            <img src="/images/login-icon-placeholder.png" alt="<%= __('login') %>" class="auth-icon"> <!-- Replace with actual icon -->
-                            <span><%= __('login') %></span>
-                        </a>
-                        <a href="<%= getLocalizedPath('/register') %>" title="<%= __('register') %>">
-                            <img src="/images/register-icon-placeholder.png" alt="<%= __('register') %>" class="auth-icon"> <!-- Replace with actual icon -->
-                            <span><%= __('register') %></span>
+                        <% if (user && user.name) { %>
+                            <a href="/logout" title="<%= __('logout') || 'Logout' %>" style="margin-right: 12px; color: #a50e0e; font-weight: bold;">
+                                <img src="/assets/login-icon.png" alt="<%= __('logout') || 'Logout' %>" class="auth-icon">
+                                <span><%= __('logout') || 'Logout' %></span>
+                            </a>
+                        <% } else { %>
+                            <a href="<%= getLocalizedPath('/login') %>" title="<%= __('login') || 'Login' %>">
+                                <img src="/assets/login-icon.png" alt="<%= __('login') || 'Login' %>" class="auth-icon">
+                                <span><%= __('login') || 'Login' %></span>
+                            </a>
+                        <% } %>
+                        <img src="/assets/rim1-token-logo.jpg" alt="Rimtoken Logo" class="logo-img" style="height: 32px; width: auto; max-width: 80px; margin: 0 8px; display: inline-block; vertical-align: middle; background: transparent; border: none; box-shadow: none;" />
+                        <a href="<%= getLocalizedPath('/register') %>" title="Register">
+                            <img src="/assets/register-icon.jpg" alt="Register" class="auth-icon">
+                            <span>Register</span>
                         </a>
                     </div>
                     <div class="language-selector">
@@ -43,7 +56,6 @@
                     </div>
                 </div>
             </div>
-             <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
         </div>
     </header>
     <main>

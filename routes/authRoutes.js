@@ -1,32 +1,70 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 router.get('/login', (req, res) => {
-    res.render('auth', { activeForm: 'login' });
+    res.render('login', {
+        user: req.session && req.session.userId ? { name: req.session.userName } : null,
+        currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en'
+    });
 });
 
 router.get('/register', (req, res) => {
-    res.render('auth', { activeForm: 'register' });
+    res.render('auth', {
+        user: req.session && req.session.userId ? { name: req.session.userName } : null,
+        currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en',
+        error: null
+    });
 });
 
-router.post('/login', (req, res) => {
-    // Handle login logic (validate credentials, session, etc.)
-    const { loginEmail, loginPassword } = req.body;
-    console.log('Login attempt:', loginEmail, loginPassword);
-    // For now, redirect home
-    res.redirect('/');
-});
-
-router.post('/register', (req, res) => {
-    // Handle registration logic (save user, hash password, etc.)
-    const { firstName, lastName, regUsername, regEmail, regPassword, confirmPassword } = req.body;
-    console.log('Registration attempt:', req.body);
-    // For now, redirect to login
-    if (regPassword !== confirmPassword) {
-        // Handle error: passwords don't match
-        return res.render('auth', { activeForm: 'register', error: res.__('passwordsDoNotMatch') }); // You'd add this key to your locale files
+router.post('/login', async (req, res) => {
+    const { loginUsername, loginPassword } = req.body;
+    try {
+        const user = await User.findOne({ username: loginUsername });
+        if (!user) {
+            return res.render('login', { error: req.__('invalidCredentials') || 'Invalid username or password.', currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en' });
+        }
+        const isMatch = await bcrypt.compare(loginPassword, user.password);
+        if (!isMatch) {
+            return res.render('login', { error: req.__('invalidCredentials') || 'Invalid username or password.', currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en' });
+        }
+        req.session.userId = user._id;
+        req.session.isAuthenticated = true;
+        res.redirect('/');
+    } catch (err) {
+        console.error('Login error:', err);
+        res.render('login', { error: req.__('loginError') || 'An error occurred during login.', currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en' });
     }
-    res.redirect('/login');
+});
+
+router.post('/register', async (req, res) => {
+    const { firstName, lastName, username, email, password, confirmPassword } = req.body;
+    if (password !== confirmPassword) {
+        return res.render('auth', { error: 'كلمتا المرور غير متطابقتين.', user: null, currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en' });
+    }
+    try {
+        const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+        if (existingUser) {
+            return res.render('auth', { error: 'اسم المستخدم أو البريد الإلكتروني مستخدم بالفعل.', user: null, currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en' });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({ firstName, lastName, username, email, password: hashedPassword });
+        await user.save();
+        console.log('تم تسجيل مستخدم جديد:', user);
+        res.redirect('/login');
+    } catch (err) {
+        console.error('Registration error:', err);
+        res.render('auth', { error: 'حدث خطأ أثناء التسجيل. حاول مرة أخرى.', user: null, currentLocale: req.locale || (req.getLocale && req.getLocale()) || 'en' });
+    }
+});
+
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.status(200).render('logout-message', {
+      message: 'You have been logged out successfully. You will be redirected to the homepage shortly.'
+    });
+  });
 });
 
 module.exports = router;

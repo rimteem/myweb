@@ -4,9 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const i18n = require('i18n');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 const indexRoutes = require('./routes/indexRoutes');
 const authRoutes = require('./routes/authRoutes');
+const accountRoutes = require('./routes/account');
+const walletRoutes = require('./routes/wallet');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -39,6 +43,9 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve DEX static files for iframe integration
+app.use('/SwapOcean-DEX-main/SwapOcean-DEX-main', express.static(path.join(__dirname, 'public/SwapOcean-DEX-main/SwapOcean-DEX-main')));
+
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -54,20 +61,57 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middleware to set default language to English if not specified
+app.use((req, res, next) => {
+  // فرض اللغة الإنجليزية كلغة افتراضية عند فتح الموقع
+  if (!req.cookies['rimtoken-lang']) {
+    res.cookie('rimtoken-lang', 'en', { maxAge: 900000, httpOnly: true });
+    req.setLocale('en');
+    res.locals.currentLocale = 'en';
+  }
+  next();
+});
+
+// إعداد الجلسة
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'rimtoken-secret',
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: 'mongodb+srv://rimtestmede:5LtiigJ5mUenlizO@cluster0.fioxlok.mongodb.net/all-data?retryWrites=true&w=majority&appName=Cluster0',
+    collectionName: 'sessions'
+  }),
+  cookie: { maxAge: 1000 * 60 * 60 * 24 }
+}));
+
 // Routes
 app.use('/', indexRoutes);
 app.use('/', authRoutes); // Auth routes like /login, /register
+app.use('/account', accountRoutes);
+app.use('/wallet', walletRoutes);
 
 // 404 Handler
 app.use((req, res, next) => {
-  res.status(404).send("Sorry, page not found!");
+  res.status(404).render('error', {
+    message: req.__('Sorry, page not found!') || 'Sorry, page not found!',
+    error: { status: 404 },
+    user: req.user || null,
+    currentLocale: req.getLocale ? req.getLocale() : (req.locale || 'en')
+  });
 });
 
 // Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).render('error', {
+    message: req.__('Something broke!') || 'Something broke!',
+    error: { status: 500 },
+    user: req.user || null,
+    currentLocale: req.getLocale ? req.getLocale() : (req.locale || 'en')
+  });
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
